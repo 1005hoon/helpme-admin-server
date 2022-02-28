@@ -9,16 +9,23 @@ import {
 } from '@nestjs/common';
 import { CreateAdditionalDto } from './dto/create-additional.dto';
 import { QuotationAdditionalService } from './quotation-additionals.service';
+import { QuotationMemosService } from './quotation-memos.service';
 
 @Controller('quotations')
 export class QuotationsController {
   constructor(
     private readonly additionalsService: QuotationAdditionalService,
+    private readonly memosService: QuotationMemosService,
   ) {}
 
   @Get('/additionals')
   getAdditionals() {
     return this.additionalsService.getAllAdditionals();
+  }
+
+  @Get('/additionals/:id')
+  getAdditional(@Param('id') id: string) {
+    return this.additionalsService.getAdditionalById(id);
   }
 
   @Post('/additionals')
