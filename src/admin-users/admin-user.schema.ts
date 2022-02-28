@@ -15,6 +15,9 @@ export class AdminUser {
   public email: string;
 
   @Prop()
+  public thumbnail_url?: string;
+
+  @Prop()
   public group: string;
 }
 

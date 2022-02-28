@@ -33,10 +33,15 @@ export class AdminUsersService {
     return user;
   }
 
-  public createUserWithGoogle(email: string, name: string) {
+  public createUserWithGoogle(
+    email: string,
+    name: string,
+    thumbnail_url: string,
+  ) {
     return this.adminUser.create({
       email,
       name,
+      thumbnail_url,
       role: AdminUserRole.MEMBER,
       group: AdminUserGroup.CORP_REG,
     });
