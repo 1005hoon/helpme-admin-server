@@ -7,6 +7,7 @@ import { DatabaseModule } from './database/database.module';
 import { AuthModule } from './auth/auth.module';
 import { AdminUsersModule } from './admin-users/admin-users.module';
 import { QuotationsModule } from './quotations/quotations.module';
+import { CorpsModule } from './corps/corps.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { QuotationsModule } from './quotations/quotations.module';
     AuthModule,
     AdminUsersModule,
     QuotationsModule,
+    CorpsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
