@@ -21,6 +21,11 @@ export class AuthController {
     return req.user;
   }
 
+  @Post('/logout')
+  logout(@Req() req: RequestWithUser) {
+    req.res.setHeader('Set-Cookie', this.authService.getCookiesForLogOut());
+  }
+
   @Post('oauth/google')
   async signInOrRegisterWithGoogle(
     @Body() tokenDto: VerificationTokenDto,
