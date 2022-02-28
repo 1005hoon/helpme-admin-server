@@ -1,5 +1,6 @@
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+import * as cookieParser from 'cookie-parser';
 import * as morgan from 'morgan';
 import * as mongoose from 'mongoose';
 import { AppModule } from './app.module';
@@ -18,6 +19,7 @@ async function bootstrap() {
     },
   });
 
+  app.use(cookieParser());
   if (!__PROD__) {
     app.use(morgan('dev'));
     mongoose.set('debug', { shell: true });
