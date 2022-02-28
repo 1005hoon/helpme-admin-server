@@ -10,7 +10,7 @@ import { MongooseModule } from '@nestjs/mongoose';
       useFactory: async (config: ConfigService) => ({
         uri: config.get<string>('DB_PROD'),
       }),
-      connectionName: 'PROD',
+      connectionName: 'DB_PROD',
     }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
@@ -18,7 +18,7 @@ import { MongooseModule } from '@nestjs/mongoose';
       useFactory: async (config: ConfigService) => ({
         uri: config.get<string>('DB_MARKETING'),
       }),
-      connectionName: 'MARKETING_PROD',
+      connectionName: 'DB_MARKETING',
     }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
@@ -26,7 +26,7 @@ import { MongooseModule } from '@nestjs/mongoose';
       useFactory: async (config: ConfigService) => ({
         uri: config.get<string>('DB_MARKETING_DEV'),
       }),
-      connectionName: 'MARKETING_DEV',
+      connectionName: 'DB_MARKETING_DEV',
     }),
   ],
 })
