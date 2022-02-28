@@ -1,5 +1,9 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { Model } from 'mongoose';
+import {
+  ForbiddenException,
+  HttpException,
+  HttpStatus,
+  Injectable,
+} from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Auth, google } from 'googleapis';
 import {
@@ -27,6 +31,10 @@ export class GoogleAuthService {
 
   public async authenticate(access_token: string) {
     const { email } = await this.oauthClient.getTokenInfo(access_token);
+
+    if (email.split('@')[1] !== 'help-me.kr') {
+      throw new ForbiddenException('헬프미 계정으로만 로그인이 가능합니다');
+    }
 
     try {
       const user = await this.adminUserService.getUserByEmail(email);
