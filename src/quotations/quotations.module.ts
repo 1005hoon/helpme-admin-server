@@ -11,6 +11,7 @@ import {
   QuotationContentSchema,
 } from './quotation-content.schema';
 import { QuotationMemo, QuotationMemoSchema } from './quotation-memo.schema';
+import { QuotationMemosService } from './quotation-memos.service';
 import {
   QuotationSearch,
   QuotationSearchSchema,
@@ -31,6 +32,10 @@ import { QuotationsService } from './quotations.service';
     ),
   ],
   controllers: [QuotationsController],
-  providers: [QuotationsService, QuotationAdditionalService],
+  providers: [
+    QuotationsService,
+    QuotationAdditionalService,
+    QuotationMemosService,
+  ],
 })
 export class QuotationsModule {}

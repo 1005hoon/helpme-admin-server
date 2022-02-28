@@ -8,6 +8,7 @@ import {
   Put,
 } from '@nestjs/common';
 import { CreateAdditionalDto } from './dto/create-additional.dto';
+import { CreateMemoDto } from './dto/create-memo.dto';
 import { QuotationAdditionalService } from './quotation-additionals.service';
 import { QuotationMemosService } from './quotation-memos.service';
 
@@ -17,6 +18,31 @@ export class QuotationsController {
     private readonly additionalsService: QuotationAdditionalService,
     private readonly memosService: QuotationMemosService,
   ) {}
+
+  @Get('/memos')
+  getMemos() {
+    return this.memosService.getAllMemos();
+  }
+
+  @Get('/memos/:id')
+  getMemoById(@Param('id') id: string) {
+    return this.memosService.getMemoById(id);
+  }
+
+  @Post('/memos')
+  createMemo(@Body() memoDto: CreateMemoDto) {
+    return this.memosService.createNewMemo(memoDto);
+  }
+
+  @Put('/memos/:id')
+  updateMemo(@Param('id') id: string, @Body() memoDto: Partial<CreateMemoDto>) {
+    return this.memosService.updateMemoById(id, memoDto);
+  }
+
+  @Delete('/memos/:id')
+  deleteMemo(@Param('id') id: string) {
+    return this.memosService.removeMemoById(id);
+  }
 
   @Get('/additionals')
   getAdditionals() {

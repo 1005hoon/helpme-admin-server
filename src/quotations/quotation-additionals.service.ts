@@ -43,6 +43,7 @@ export class QuotationAdditionalService {
   public async createAdditional(additionalDto: CreateAdditionalDto) {
     const duplicateAdditional = await this.additional.findOne({
       type: additionalDto.type,
+      is_deleted: false,
     });
 
     if (duplicateAdditional) {
