@@ -19,6 +19,17 @@ export class QuotationContent {
 
   @Prop({ type: mongooseSchema.Types.ObjectId, ref: QuotationSearch.name })
   search: QuotationSearch;
+  @Prop({ default: false })
+  public is_deleted: boolean;
+
+  @Prop()
+  public deleted_at?: Date;
+
+  @Prop({ default: new Date(), type: mongooseSchema.Types.Date })
+  public created_at: Date;
+
+  @Prop({ default: new Date(), type: mongooseSchema.Types.Date })
+  public updated_at: Date;
 }
 
 export const QuotationContentSchema =

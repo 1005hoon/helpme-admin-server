@@ -5,6 +5,7 @@ import {
   QuotationAdditional,
   QuotationAdditionalSchema,
 } from './quotation-additional.schema';
+import { QuotationAdditionalService } from './quotation-additionals.service';
 import {
   QuotationContent,
   QuotationContentSchema,
@@ -30,6 +31,6 @@ import { QuotationsService } from './quotations.service';
     ),
   ],
   controllers: [QuotationsController],
-  providers: [QuotationsService],
+  providers: [QuotationsService, QuotationAdditionalService],
 })
 export class QuotationsModule {}
