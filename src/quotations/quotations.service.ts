@@ -34,8 +34,10 @@ export class QuotationsService {
 
       return this.search
         .find(
-          { is_deleted: false },
-          { $text: { $search: keyword } },
+          {
+            is_deleted: false,
+            $text: { $search: `"${keyword.split(' ').join('" "')}"` },
+          },
           { score: { $meta: 'textScore' } },
         )
         .sort({ ignoredName: { $meta: 'textScore' } })
