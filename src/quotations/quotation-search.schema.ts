@@ -79,14 +79,14 @@ QuotationSearchSchema.index({
 });
 
 QuotationSearchSchema.virtual('quotations', {
-  ref: 'QuotationsContent',
+  ref: 'QuotationContent',
   localField: '_id',
   foreignField: 'search',
   justOne: false,
 });
 
 QuotationSearchSchema.virtual('additionals', {
-  ref: 'QuotationsAdditional',
+  ref: 'QuotationAdditional',
   localField: 'categories',
   foreignField: 'categories',
   justOne: false,

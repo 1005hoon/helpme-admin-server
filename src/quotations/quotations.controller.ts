@@ -6,18 +6,41 @@ import {
   Param,
   Post,
   Put,
+  Query,
 } from '@nestjs/common';
 import { CreateAdditionalDto } from './dto/create-additional.dto';
 import { CreateMemoDto } from './dto/create-memo.dto';
+import { CreateQuotationDto } from './dto/create-quotation.dto';
+import { UpdateQuotationDto } from './dto/update-quotation.dto';
 import { QuotationAdditionalService } from './quotation-additionals.service';
 import { QuotationMemosService } from './quotation-memos.service';
+import { QuotationsService } from './quotations.service';
 
 @Controller('quotations')
 export class QuotationsController {
   constructor(
+    private readonly quotationsService: QuotationsService,
     private readonly additionalsService: QuotationAdditionalService,
     private readonly memosService: QuotationMemosService,
   ) {}
+  @Get('/')
+  async findSearchOptions(
+    @Query()
+    query: {
+      submissionType: string;
+      registrationType: string;
+      keyword?: string;
+    },
+  ) {
+    return this.quotationsService.getSearchResultsForRegTypesAndSubmitOption(
+      query,
+    );
+  }
+
+  @Post()
+  createQuotation(@Body() quotationDto: CreateQuotationDto) {
+    return this.quotationsService.createQuotation(quotationDto);
+  }
 
   @Get('/memos')
   getMemos() {
@@ -70,5 +93,23 @@ export class QuotationsController {
   @Delete('/additionals/:id')
   deleteAdditional(@Param('id') id: string) {
     return this.additionalsService.removeAdditionalById(id);
+  }
+
+  @Get(':id')
+  findSearchById(@Param('id') id: string) {
+    return this.quotationsService.getQuotationByIdWithMemos(id);
+  }
+
+  @Put(':id')
+  updateQuotationById(
+    @Param('id') id: string,
+    @Body() dto: UpdateQuotationDto,
+  ) {
+    return this.quotationsService.updateQuotationById(id, dto);
+  }
+
+  @Delete(':id')
+  removeQuotationById(@Param('id') id: string) {
+    return this.quotationsService.removeQuotationById(id);
   }
 }
