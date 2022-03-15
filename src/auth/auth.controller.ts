@@ -4,7 +4,7 @@ import { AdminUsersService } from 'src/admin-users/admin-users.service';
 import { AuthService } from './auth.service';
 import { GoogleAuthService } from './google-auth.service';
 import { JwtAuthGuard } from './jwt-auth.guard';
-import { RequestWithUser } from './request-with-user.interface';
+import { RequestWithUser } from './interfaces/request-with-user.interface';
 import { VerificationTokenDto } from './verification-token.dto';
 
 @Controller('auth')
