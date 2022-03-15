@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import { AdminUsersModule } from './admin-users/admin-users.module';
 import { QuotationsModule } from './quotations/quotations.module';
 import { CorpsModule } from './corps/corps.module';
+import { MarketingModule } from './marketing/marketing.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { CorpsModule } from './corps/corps.module';
     AdminUsersModule,
     QuotationsModule,
     CorpsModule,
+    MarketingModule,
   ],
   controllers: [AppController],
   providers: [AppService],

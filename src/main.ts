@@ -20,6 +20,7 @@ async function bootstrap() {
   });
 
   app.use(cookieParser());
+
   if (!__PROD__) {
     app.use(morgan('dev'));
     mongoose.set('debug', { shell: true });

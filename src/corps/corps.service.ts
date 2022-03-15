@@ -3,6 +3,16 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Corp, CorpDocument, ICorp } from './corp.schema';
 
+type Result = {
+  _id: string;
+  corpName: string;
+  contact: {
+    name: string;
+    phone: string;
+  };
+  boards: [{ name: string; termEnds: string; position: string }];
+};
+
 @Injectable()
 export class CorpsService {
   constructor(
@@ -11,7 +21,10 @@ export class CorpsService {
   ) {}
 
   public async getExpiringRepsAndClientsForDate(from: string, days: number) {
-    const result = await this.corp.getExpiringRepsAndClientsForDate(from, days);
+    const result: Result[] = await this.corp.getExpiringRepsAndClientsForDate(
+      from,
+      days,
+    );
 
     return {
       result,
